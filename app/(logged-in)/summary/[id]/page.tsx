@@ -157,7 +157,7 @@ export default function SummaryPage() {
     return (
         <div className="container mx-auto py-6 md:py-10 px-4">
             <div className="mb-6 flex items-center justify-between">
-                <Link href="/dashboard" className="group inline-flex items-center text-indigo-600 hover:text-indigo-800 transition-colors">
+                <Link href="/dashboard" className="group inline-flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 transition-colors">
                     <ChevronLeft className="w-4 h-4 mr-1 group-hover:-translate-x-0.5 transition-transform" />
                     <span>Back to dashboard</span>
                 </Link>
@@ -168,7 +168,7 @@ export default function SummaryPage() {
                             onClick={handlePrint} 
                             variant="outline" 
                             size="sm" 
-                            className="hidden sm:flex items-center gap-1 text-sm"
+                            className="hidden sm:flex items-center gap-1 text-sm border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300"
                         >
                             <Printer className="w-4 h-4" />
                             Print
@@ -178,7 +178,7 @@ export default function SummaryPage() {
                             onClick={downloadAsTxt} 
                             variant="outline" 
                             size="sm" 
-                            className="hidden sm:flex items-center gap-1 text-sm"
+                            className="hidden sm:flex items-center gap-1 text-sm border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300"
                         >
                             <Download className="w-4 h-4" />
                             Download
@@ -186,17 +186,17 @@ export default function SummaryPage() {
                         
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
-                                <Button variant="outline" size="sm" className="hidden sm:flex items-center gap-1 text-sm">
+                                <Button variant="outline" size="sm" className="hidden sm:flex items-center gap-1 text-sm border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300">
                                     <Share2 className="w-4 h-4" />
                                     Share
                                 </Button>
                             </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end">
-                                <DropdownMenuItem onClick={shareSummary}>
+                            <DropdownMenuContent align="end" className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700">
+                                <DropdownMenuItem onClick={shareSummary} className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">
                                     <Share2 className="w-4 h-4 mr-2" />
                                     Share link
                                 </DropdownMenuItem>
-                                <DropdownMenuItem onClick={copyToClipboard}>
+                                <DropdownMenuItem onClick={copyToClipboard} className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">
                                     {isCopied ? (
                                         <CheckCircle2 className="w-4 h-4 mr-2 text-green-500" />
                                     ) : (
@@ -215,7 +215,7 @@ export default function SummaryPage() {
                 animate="visible"
                 variants={cardVariants}
             >
-                <Card className="shadow-lg border-opacity-50 bg-gradient-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900">
+                <Card className="shadow-lg border-opacity-50 bg-gradient-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900 border-gray-200 dark:border-gray-800">
                     <CardHeader className="border-b pb-6">
                         {isLoading ? (
                             <>
@@ -242,7 +242,7 @@ export default function SummaryPage() {
                                         <Button 
                                             size="sm" 
                                             variant="ghost" 
-                                            className="flex items-center gap-1.5 text-indigo-600 hover:text-indigo-800 hover:bg-indigo-50 dark:hover:bg-indigo-950"
+                                            className="flex items-center gap-1.5 text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 hover:bg-indigo-50 dark:hover:bg-indigo-950"
                                             asChild
                                         >
                                             <a 
@@ -262,7 +262,7 @@ export default function SummaryPage() {
                                         onClick={downloadAsTxt} 
                                         variant="outline" 
                                         size="sm" 
-                                        className="flex-1 flex items-center justify-center gap-1.5 text-sm"
+                                        className="flex-1 flex items-center justify-center gap-1.5 text-sm border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300"
                                     >
                                         <Download className="w-4 h-4" />
                                         Download
@@ -271,7 +271,7 @@ export default function SummaryPage() {
                                         onClick={copyToClipboard} 
                                         variant="outline" 
                                         size="sm" 
-                                        className="flex-1 flex items-center justify-center gap-1.5 text-sm"
+                                        className="flex-1 flex items-center justify-center gap-1.5 text-sm border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300"
                                     >
                                         {isCopied ? (
                                             <CheckCircle2 className="w-4 h-4 text-green-500" />
@@ -356,8 +356,8 @@ export default function SummaryPage() {
                     </CardContent>
                     
                     {!isLoading && !error && summaryData && (
-                        <CardFooter className="border-t pt-6 pb-6 flex justify-between items-center">
-                            <p className="text-sm text-gray-500">
+                        <CardFooter className="border-t border-gray-200 dark:border-gray-800 pt-6 pb-6 flex justify-between items-center">
+                            <p className="text-sm text-gray-500 dark:text-gray-400">
                                 Summary ID: {id.substring(0, 8)}...
                             </p>
                             <div className="flex gap-2 items-center">
@@ -365,7 +365,7 @@ export default function SummaryPage() {
                                     onClick={handlePrint} 
                                     variant="ghost" 
                                     size="sm" 
-                                    className="text-gray-500 hover:text-gray-700"
+                                    className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
                                 >
                                     <Printer className="w-4 h-4" />
                                 </Button>
@@ -373,7 +373,7 @@ export default function SummaryPage() {
                                     onClick={downloadAsTxt} 
                                     variant="ghost" 
                                     size="sm" 
-                                    className="text-gray-500 hover:text-gray-700"
+                                    className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
                                 >
                                     <Download className="w-4 h-4" />
                                 </Button>
@@ -381,7 +381,7 @@ export default function SummaryPage() {
                                     onClick={copyToClipboard} 
                                     variant="ghost" 
                                     size="sm" 
-                                    className="text-gray-500 hover:text-gray-700"
+                                    className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
                                 >
                                     {isCopied ? (
                                         <CheckCircle2 className="w-4 h-4 text-green-500" />
@@ -393,7 +393,7 @@ export default function SummaryPage() {
                                     onClick={shareSummary}
                                     variant="ghost" 
                                     size="sm" 
-                                    className="text-gray-500 hover:text-gray-700"
+                                    className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
                                 >
                                     <Share2 className="w-4 h-4" />
                                 </Button>

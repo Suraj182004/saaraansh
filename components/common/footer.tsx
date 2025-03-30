@@ -1,147 +1,94 @@
 import Link from "next/link";
 import { Github, Twitter, Linkedin, Facebook, FileText, Mail, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import NavLink from "./nav-link";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer className="bg-gray-50 border-t border-gray-200">
-      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-          {/* Brand and Description */}
-          <div className="col-span-1 md:col-span-2 lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2 mb-4">
-              <FileText className="h-6 w-6 text-indigo-600" />
-              <span className="font-bold text-xl text-gray-900">Saaraansh</span>
-            </Link>
-            <p className="text-gray-600 max-w-md mb-4">
-              Transform lengthy PDFs into concise, actionable summaries with our advanced AI technology. Save time and increase productivity.
+    <footer className="bg-white dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800">
+      <div className="mx-auto container px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+          {/* Branding */}
+          <div className="col-span-1 md:col-span-1">
+            <NavLink href="/" className="flex items-center gap-2">
+              <FileText className="w-6 h-6 text-indigo-600 hover:rotate-12 transform transition duration-200 ease-in-out" />
+              <span className="text-gray-900 dark:text-white text-xl font-extrabold">Saaraansh</span>
+            </NavLink>
+            <p className="mt-4 text-sm text-gray-600 dark:text-gray-400 max-w-xs">
+              Save hours of reading time. Transform lengthy PDFs into clear, accurate summaries in seconds.
             </p>
-            
-            {/* Contact Info */}
-            <div className="space-y-2 mt-6">
-              <div className="flex items-center text-gray-600">
-                <Mail className="h-4 w-4 mr-2 text-indigo-500" />
-                <a href="mailto:contact@saaraansh.com" className="hover:text-indigo-600 transition-colors">
-                  contact@saaraansh.com
-                </a>
-              </div>
-              <div className="flex items-center text-gray-600">
-                <Phone className="h-4 w-4 mr-2 text-indigo-500" />
-                <span>+1 (555) 123-4567</span>
-              </div>
-            </div>
-            
-            {/* Social Icons */}
-            <div className="flex space-x-4 mt-6">
-              <a href="#" className="bg-gray-100 p-2 rounded-full text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 transition-colors">
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a href="#" className="bg-gray-100 p-2 rounded-full text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 transition-colors">
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a href="#" className="bg-gray-100 p-2 rounded-full text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 transition-colors">
-                <Github className="h-5 w-5" />
-              </a>
-              <a href="#" className="bg-gray-100 p-2 rounded-full text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 transition-colors">
-                <Facebook className="h-5 w-5" />
-              </a>
-            </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-gray-900 font-semibold mb-4 text-sm uppercase tracking-wider">Product</h3>
+          {/* Product Links */}
+          <div className="col-span-1">
+            <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-4">Product</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/features" className="text-gray-600 hover:text-indigo-600 transition-colors text-sm">
+                <NavLink href="/#features" className="text-sm text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400">
                   Features
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link href="/#pricing" className="text-gray-600 hover:text-indigo-600 transition-colors text-sm">
+                <NavLink href="/#pricing" className="text-sm text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400">
                   Pricing
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link href="/testimonials" className="text-gray-600 hover:text-indigo-600 transition-colors text-sm">
-                  Testimonials
-                </Link>
-              </li>
-              <li>
-                <Link href="/faq" className="text-gray-600 hover:text-indigo-600 transition-colors text-sm">
-                  FAQ
-                </Link>
+                <NavLink href="/upload" className="text-sm text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400">
+                  Upload PDF
+                </NavLink>
               </li>
             </ul>
           </div>
 
           {/* Company Links */}
-          <div>
-            <h3 className="text-gray-900 font-semibold mb-4 text-sm uppercase tracking-wider">Company</h3>
+          <div className="col-span-1">
+            <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-4">Company</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/about" className="text-gray-600 hover:text-indigo-600 transition-colors text-sm">
+                <NavLink href="/about" className="text-sm text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400">
                   About Us
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link href="/privacy" className="text-gray-600 hover:text-indigo-600 transition-colors text-sm">
+                <NavLink href="/privacy" className="text-sm text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400">
                   Privacy Policy
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link href="/terms" className="text-gray-600 hover:text-indigo-600 transition-colors text-sm">
+                <NavLink href="/terms" className="text-sm text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400">
                   Terms of Service
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-gray-600 hover:text-indigo-600 transition-colors text-sm">
-                  Contact
-                </Link>
+                </NavLink>
               </li>
             </ul>
           </div>
 
           {/* Newsletter */}
-          <div>
-            <h3 className="text-gray-900 font-semibold mb-4 text-sm uppercase tracking-wider">Stay Updated</h3>
-            <p className="text-gray-600 text-sm mb-4">
-              Subscribe to our newsletter for the latest updates and offers.
+          <div className="col-span-1">
+            <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-4">Stay Updated</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+              Subscribe to our newsletter for the latest updates and features.
             </p>
-            <form className="space-y-2">
-              <div className="flex items-center">
-                <input
-                  type="email"
-                  placeholder="Your email address"
-                  className="px-3 py-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
-                  required
-                />
-              </div>
-              <Button type="submit" className="w-full bg-indigo-600 hover:bg-indigo-700 text-white">
+            <div className="flex gap-2">
+              <Input 
+                type="email" 
+                placeholder="Enter your email" 
+                className="bg-white dark:bg-gray-900 border-gray-300 dark:border-gray-700"
+              />
+              <Button className="bg-indigo-600 hover:bg-indigo-700 text-white">
                 Subscribe
               </Button>
-            </form>
+            </div>
           </div>
         </div>
-        
-        {/* Copyright */}
-        <div className="mt-12 pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-500 text-sm text-center md:text-left">
+
+        <div className="border-t border-gray-200 dark:border-gray-800 mt-10 pt-8">
+          <p className="text-center text-sm text-gray-600 dark:text-gray-400">
             © {currentYear} Saaraansh. All rights reserved.
           </p>
-          <div className="mt-4 md:mt-0 flex space-x-6">
-            <Link href="/privacy" className="text-sm text-gray-500 hover:text-indigo-600 transition-colors">
-              Privacy
-            </Link>
-            <Link href="/terms" className="text-sm text-gray-500 hover:text-indigo-600 transition-colors">
-              Terms
-            </Link>
-            <Link href="/cookies" className="text-sm text-gray-500 hover:text-indigo-600 transition-colors">
-              Cookies
-            </Link>
-          </div>
         </div>
       </div>
     </footer>
