@@ -5,7 +5,6 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "build:deploy": "npm install --legacy-peer-deps && npm install tailwindcss@^4.0.15 @tailwindcss/postcss@^4.0.15 --legacy-peer-deps && next build",
     "start": "next start",
     "lint": "next lint",
     "postinstall": "node -e \"try { require('fs').mkdirSync('lib') } catch (e) {}\""
