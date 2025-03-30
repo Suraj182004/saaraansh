@@ -55,6 +55,10 @@ export async function POST(req: NextRequest) {
     // Verify Stripe webhook signature
     let event: Stripe.Event;
     try {
+      if (!stripe) {
+        throw new Error('Stripe is not initialized. This function can only be called server-side.');
+      }
+      
       event = stripe.webhooks.constructEvent(
         body,
         signature,
