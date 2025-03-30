@@ -2,7 +2,7 @@ services:
   - type: web
     name: saaraansh
     env: node
-    buildCommand: npm run build:render
+    buildCommand: npm ci --legacy-peer-deps && npm run build --no-lint
     startCommand: npm start
     plan: starter
     branch: main

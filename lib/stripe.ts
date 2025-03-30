@@ -29,6 +29,11 @@ export const PLANS = {
   }
 };
 
+// Function to get the credit limit for a specific plan
+export function getPlanLimit(planName: keyof typeof PLANS): number {
+  return PLANS[planName]?.credits || PLANS.free.credits;
+}
+
 // Make sure we export Stripe instance safely
 export { stripe };
 

@@ -21,7 +21,7 @@ export async function hasAvailableCredits(userId: string): Promise<boolean> {
   
   // Check if user has reached their plan limit
   const planLimit = PLANS[userCredits.plan as keyof typeof PLANS]?.credits || PLANS.free.credits;
-  return userCredits.creditsUsed < planLimit;
+  return (userCredits.creditsUsed ?? 0) < planLimit;
 }
 
 /**
