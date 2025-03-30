@@ -14,15 +14,16 @@ const eslintConfig={
     extends: [
       "next/core-web-vitals",
       "next/typescript",
-      "prettier",
-      "plugin:tailwindcss/recommended"
+      "prettier"
+      // "plugin:tailwindcss/recommended" - removed due to Tailwind v4 incompatibility
     ],
-    plugins: ["prettier", "tailwindcss"],
+    plugins: ["prettier"], // removed "tailwindcss" due to Tailwind v4 incompatibility
     rules: {
       "prettier/prettier": "error",
       "react/no-escape-entities": "off",
-      "tailwindcss/classnames-order": "warn",
-      "tailwindcss/no-custom-classname": "warn",
+      // Removed tailwindcss rules due to Tailwind v4 incompatibility
+      // "tailwindcss/classnames-order": "warn",
+      // "tailwindcss/no-custom-classname": "warn",
     },
   })
 }
