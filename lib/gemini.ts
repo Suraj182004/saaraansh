@@ -33,44 +33,44 @@ GENERATE A COMPREHENSIVE, WELL-FORMATTED SUMMARY WITH THE FOLLOWING STRUCTURE:
 [A concise 3-5 sentence overview of the entire document that captures its essence and main purpose]
 
 ## 📌 KEY HIGHLIGHTS
-• [First key highlight with detailed explanation]
-• [Second key highlight with context and significance]
-• [Third key highlight with implications]
-• [Add as many key highlights as needed to fully represent the document's important points]
+• **[Important Term or Concept]:** [First key highlight with detailed explanation - use bold text for key terms/concepts as shown here]
+• **[Important Point]:** [Second key highlight with context and significance]
+• **[Notable Finding]:** [Third key highlight with implications]
+• [Add as many key highlights as needed to fully represent the document's important points, using bold text for emphasis]
 
 ## 🔍 MAIN CONCEPTS & TERMINOLOGY
-• [First main concept with thorough explanation and examples if present]
-• [Second main concept with detailed breakdown]
-• [Include any specialized terminology with definitions]
-• [Continue with all important concepts from the document]
+• **[Concept Name]:** [First main concept with thorough explanation and examples if present]
+• **[Technical Term]:** [Second main concept with detailed breakdown]
+• **[Key Methodology]:** [Include any specialized terminology with definitions]
+• [Continue with all important concepts from the document, always using bold for the term being defined]
 
 ## 📊 DETAILED FINDINGS & EVIDENCE
-• [First important finding with all supporting evidence, data points, and context]
-• [Second important finding with comprehensive analysis]
-• [Include numerical data, statistics, or research outcomes if present]
-• [Continue with all significant findings, arranged by themes or categories if appropriate]
+• **[Finding 1]:** [First important finding with all supporting evidence, data points, and context]
+• **[Finding 2]:** [Second important finding with comprehensive analysis]
+• **[Statistical Evidence]:** [Include numerical data, statistics, or research outcomes if present]
+• [Continue with all significant findings, using bold for the main point of each bullet]
 
 ## 📝 METHODOLOGIES & APPROACHES
-• [Research methods, frameworks, or approaches used, if applicable]
-• [Detailed explanation of processes or procedures mentioned]
-• [Limitations or constraints acknowledged in the document]
+• **[Method Name]:** [Research methods, frameworks, or approaches used, if applicable]
+• **[Process Description]:** [Detailed explanation of processes or procedures mentioned]
+• **[Limitation]:** [Limitations or constraints acknowledged in the document]
 
 ## 💡 INSIGHTS & IMPLICATIONS
-• [First major insight with full explanation of its significance]
-• [Second major insight with detailed discussion of implications]
-• [Practical applications or recommendations mentioned]
-• [Include any future directions or suggested next steps]
-• [Expand on how these insights connect to broader contexts]
+• **[Key Insight]:** [First major insight with full explanation of its significance]
+• **[Strategic Implication]:** [Second major insight with detailed discussion of implications]
+• **[Practical Application]:** [Practical applications or recommendations mentioned]
+• **[Future Direction]:** [Include any future directions or suggested next steps]
+• [Continue with insights, consistently using bold for the primary point]
 
 ## 📚 REFERENCES & KEY SOURCES
-• [Important references, citations, or sources mentioned in the document]
-• [Key authorities or experts cited]
-• [Related works that are significantly discussed]
+• **[Primary Source]:** [Important references, citations, or sources mentioned in the document]
+• **[Key Authority]:** [Key authorities or experts cited]
+• **[Related Work]:** [Related works that are significantly discussed]
 
 ## 🔑 CONCLUSION
 [A thoughtful 4-6 sentence conclusion that thoroughly captures the essence and significance of the document, its contributions to the field, and its potential impact]
 
-Format the summary to be visually appealing with clear section headings and structured bullet points. Use detailed yet clear language that fully preserves the meaning, nuance, and complexity of the original text. If certain sections aren't relevant to this particular document, you may omit them, but provide thorough coverage of all applicable sections.`;
+Format the summary to be visually appealing with clear section headings and structured bullet points. Use detailed yet clear language that fully preserves the meaning, nuance, and complexity of the original text. If certain sections aren't relevant to this particular document, you may omit them, but provide thorough coverage of all applicable sections. Always use **bold text** format for emphasizing key terms and the main point of each bullet.`;
 
     // Try each model name in sequence until one works
     let lastError = null;

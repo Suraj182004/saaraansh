@@ -148,6 +148,12 @@ export default function SummaryPage() {
         visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
     };
 
+    // Helper function to process bold text
+    const processBoldText = (text: string): string => {
+        // Replace **text** with <strong>text</strong>
+        return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    };
+
     return (
         <div className="container mx-auto py-6 md:py-10 px-4">
             <div className="mb-6 flex items-center justify-between">
@@ -324,16 +330,22 @@ export default function SummaryPage() {
                                     }
                                     // Check if line starts with a bullet point
                                     else if (line.trim().startsWith('•')) {
+                                        // Process the content within the bullet point to handle bold text
+                                        const content = line.trim().substring(1);
+                                        const formattedContent = processBoldText(content);
+                                        
                                         return (
                                             <div key={index} className="pl-5 mb-3 relative break-words">
                                                 <span className="text-indigo-600 dark:text-indigo-400 absolute left-0">{line.trim().substring(0, 1)}</span>
-                                                <span>{line.trim().substring(1)}</span>
+                                                <span dangerouslySetInnerHTML={{ __html: formattedContent }} />
                                             </div>
                                         );
                                     }
                                     // Otherwise render as normal paragraph
                                     else if (line.trim()) {
-                                        return <p key={index} className="mb-4 text-gray-700 dark:text-gray-300 break-words">{line}</p>;
+                                        // Process paragraph content for bold text
+                                        const formattedText = processBoldText(line);
+                                        return <p key={index} className="mb-4 text-gray-700 dark:text-gray-300 break-words" dangerouslySetInnerHTML={{ __html: formattedText }} />;
                                     }
                                     return null; // Skip empty lines
                                 })}

@@ -104,6 +104,13 @@ export default function DashboardPage() {
         return text.substring(0, maxLength) + '...';
     };
 
+    // Helper function to truncate filename
+    const truncateFilename = (filename: string, maxLength: number = 40) => {
+        if (!filename) return '';
+        if (filename.length <= maxLength) return filename;
+        return filename.substring(0, maxLength) + '...';
+    };
+
     return (
         <div className="container py-8 md:py-12 px-4 md:px-6">
             <motion.div 
@@ -295,9 +302,9 @@ export default function DashboardPage() {
                                 >
                                     <CardHeader className="pb-4">
                                         <div className="flex justify-between items-start">
-                                            <div className="space-y-1">
-                                                <CardTitle className="text-lg font-bold line-clamp-1 text-gray-900 dark:text-gray-50 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors break-words overflow-hidden text-ellipsis max-w-full">
-                                                    {summary.fileName || 'Untitled Document'}
+                                            <div className="space-y-1 flex-1 min-w-0 pr-2">
+                                                <CardTitle className="text-lg font-bold line-clamp-1 text-gray-900 dark:text-gray-50 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors break-words overflow-hidden text-ellipsis">
+                                                    {summary.fileName ? truncateFilename(summary.fileName, 40) : 'Untitled Document'}
                                                 </CardTitle>
                                                 <div className="flex flex-wrap gap-2 items-center">
                                                     <Badge variant="outline" className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1">
@@ -313,7 +320,7 @@ export default function DashboardPage() {
                                                     href={summary.originalFileUrl}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="text-gray-400 hover:text-indigo-600 dark:text-gray-500 dark:hover:text-indigo-400 transition-colors p-1 rounded-full hover:bg-gray-100"
+                                                    className="text-gray-400 hover:text-indigo-600 dark:text-gray-500 dark:hover:text-indigo-400 transition-colors p-1 rounded-full hover:bg-gray-100 flex-shrink-0"
                                                     title="View original PDF"
                                                 >
                                                     <ExternalLink className="w-4 h-4" />
