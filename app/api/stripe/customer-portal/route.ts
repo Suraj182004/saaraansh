@@ -32,6 +32,11 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
+
+    // Ensure stripe is initialized before using it
+    if (!stripe) {
+      throw new Error('Stripe is not initialized. This function can only be called server-side.');
+    }
     
     // Create a billing portal session
     const session = await stripe.billingPortal.sessions.create({
