@@ -5,9 +5,10 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "build:deploy": "npm install --legacy-peer-deps && next build",
+    "build:deploy": "npm install --legacy-peer-deps && npm install tailwindcss@^4.0.15 @tailwindcss/postcss@^4.0.15 --legacy-peer-deps && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "node -e \"try { require('fs').mkdirSync('lib') } catch (e) {}\""
   },
   "dependencies": {
     "@clerk/nextjs": "^6.12.12",
@@ -21,6 +22,7 @@
     "@radix-ui/react-select": "^2.1.6",
     "@radix-ui/react-slot": "^1.1.2",
     "@stripe/stripe-js": "^6.1.0",
+    "@tailwindcss/postcss": "^4.0.15",
     "@types/uuid": "^10.0.0",
     "@uploadthing/react": "^7.3.0",
     "class-variance-authority": "^0.7.1",
@@ -40,6 +42,7 @@
     "sonner": "^2.0.2",
     "stripe": "^17.7.0",
     "tailwind-merge": "^3.0.2",
+    "tailwindcss": "^4.0.15",
     "tw-animate-css": "^1.2.4",
     "uploadthing": "^7.6.0",
     "uuid": "^11.1.0",
