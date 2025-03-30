@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "build:deploy": "next build",
+    "build:deploy": "npm install --legacy-peer-deps && next build",
     "start": "next start",
     "lint": "next lint",
     "postinstall": "node -e \"try { require('fs').mkdirSync('lib') } catch (e) {}\""
@@ -57,7 +57,6 @@
     "eslint": "^9",
     "eslint-config-next": "15.2.3",
     "eslint-config-prettier": "^10.1.1",
-    "eslint-plugin-tailwindcss": "^3.18.0",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5"
   },
