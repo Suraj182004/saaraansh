@@ -22,31 +22,55 @@ export async function summarizeText(text: string): Promise<string> {
     console.log(`Attempting to use Gemini API with key: ${maskedKey}`);
     
     // Create a more explicit prompt that doesn't allow the model to "talk back"
-    const prompt = `SYSTEM: You are a PDF summarization system. You will be given text extracted from a PDF document. Your task is to create a comprehensive summary of this text. Do not ask questions or engage in dialogue. Only output the summary itself.
+    const prompt = `SYSTEM: You are Saaraansh, an advanced PDF summarization expert. You transform complex documents into beautiful, well-structured summaries. Your summaries are comprehensive and detailed, highlighting all important information. Don't hesitate to create a lengthy summary if the document is complex or information-rich.
 
 TEXT TO SUMMARIZE:
 ${text}
 
-OUTPUT ONLY A SUMMARY OF THE ABOVE TEXT USING PLAIN TEXT FORMAT (NOT MARKDOWN):
+GENERATE A COMPREHENSIVE, WELL-FORMATTED SUMMARY WITH THE FOLLOWING STRUCTURE:
 
-SUMMARY
+# EXECUTIVE SUMMARY
+[A concise 3-5 sentence overview of the entire document that captures its essence and main purpose]
 
-MAIN POINTS:
-• [First main point]
-• [Second main point]
-• [Additional main points as needed]
+## 📌 KEY HIGHLIGHTS
+• [First key highlight with detailed explanation]
+• [Second key highlight with context and significance]
+• [Third key highlight with implications]
+• [Add as many key highlights as needed to fully represent the document's important points]
 
-KEY FINDINGS:
-• [First key finding]
-• [Second key finding]
-• [Additional key findings as needed]
+## 🔍 MAIN CONCEPTS & TERMINOLOGY
+• [First main concept with thorough explanation and examples if present]
+• [Second main concept with detailed breakdown]
+• [Include any specialized terminology with definitions]
+• [Continue with all important concepts from the document]
 
-IMPORTANT DETAILS:
-• [First important detail]
-• [Second important detail]
-• [Additional important details as needed]
+## 📊 DETAILED FINDINGS & EVIDENCE
+• [First important finding with all supporting evidence, data points, and context]
+• [Second important finding with comprehensive analysis]
+• [Include numerical data, statistics, or research outcomes if present]
+• [Continue with all significant findings, arranged by themes or categories if appropriate]
 
-The summary should be detailed but concise, highlighting only the most important information from the document.`;
+## 📝 METHODOLOGIES & APPROACHES
+• [Research methods, frameworks, or approaches used, if applicable]
+• [Detailed explanation of processes or procedures mentioned]
+• [Limitations or constraints acknowledged in the document]
+
+## 💡 INSIGHTS & IMPLICATIONS
+• [First major insight with full explanation of its significance]
+• [Second major insight with detailed discussion of implications]
+• [Practical applications or recommendations mentioned]
+• [Include any future directions or suggested next steps]
+• [Expand on how these insights connect to broader contexts]
+
+## 📚 REFERENCES & KEY SOURCES
+• [Important references, citations, or sources mentioned in the document]
+• [Key authorities or experts cited]
+• [Related works that are significantly discussed]
+
+## 🔑 CONCLUSION
+[A thoughtful 4-6 sentence conclusion that thoroughly captures the essence and significance of the document, its contributions to the field, and its potential impact]
+
+Format the summary to be visually appealing with clear section headings and structured bullet points. Use detailed yet clear language that fully preserves the meaning, nuance, and complexity of the original text. If certain sections aren't relevant to this particular document, you may omit them, but provide thorough coverage of all applicable sections.`;
 
     // Try each model name in sequence until one works
     let lastError = null;
