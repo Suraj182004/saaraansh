@@ -9,23 +9,30 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 });
 
-const eslintConfig={
+// Create a simple export instead of using compat.config directly
+export default [
+  {
+    ignores: ["node_modules/**", ".next/**", "dist/**"]
+  },
+  {
+    files: ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
+    languageOptions: {
+      ecmaVersion: 2021,
+      sourceType: "module",
+    },
+    plugins: {
+      prettier: require("eslint-plugin-prettier"),
+    },
+    rules: {
+      "prettier/prettier": "error",
+      "react/no-escape-entities": "off",
+    },
+  },
   ...compat.config({
     extends: [
       "next/core-web-vitals",
       "next/typescript",
       "prettier"
-      // "plugin:tailwindcss/recommended" - removed due to Tailwind v4 incompatibility
     ],
-    plugins: ["prettier"], // removed "tailwindcss" due to Tailwind v4 incompatibility
-    rules: {
-      "prettier/prettier": "error",
-      "react/no-escape-entities": "off",
-      // Removed tailwindcss rules due to Tailwind v4 incompatibility
-      // "tailwindcss/classnames-order": "warn",
-      // "tailwindcss/no-custom-classname": "warn",
-    },
-  })
-}
-
-export default eslintConfig;
+  }),
+];
