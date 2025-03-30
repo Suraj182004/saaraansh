@@ -1,6 +1,6 @@
 # 📄 Saaraansh - AI-Powered PDF Summarizer ✨
 
-![Saaraansh Banner](https://saaraansh-g1r2.onrender.com/og.png)
+
 
 Saaraansh is an advanced AI-powered application that transforms lengthy PDFs into concise, actionable summaries within seconds. Save hours of reading time while retaining all key information from your documents.
 
