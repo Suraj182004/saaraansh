@@ -302,18 +302,30 @@ export default function SummaryPage() {
                         ) : summaryData ? (
                             <div ref={printRef} className="whitespace-pre-line text-md prose dark:prose-invert max-w-none">
                                 {summaryData.summaryText.split('\n').map((line, index) => {
-                                    // Check if the line is a section header (all caps followed by colon)
-                                    if (/^[A-Z\s]+:$/.test(line.trim())) {
+                                    // Check if the line is a section header (starts with # or ##)
+                                    if (line.trim().startsWith('# ') || line.trim().startsWith('## ')) {
+                                        // Extract the heading text without the markdown syntax
+                                        const headingText = line.replace(/^#+ /, '');
+                                        
+                                        // Preserve emojis in headings if they exist
                                         return (
-                                            <h2 key={index} className="text-xl md:text-2xl font-bold mt-8 mb-4 text-gray-900 dark:text-gray-100 border-b pb-2 border-gray-200 dark:border-gray-800">
-                                                {line}
+                                            <h2 key={index} className="text-xl md:text-2xl font-bold mt-8 mb-4 text-gray-900 dark:text-gray-100 border-b pb-2 border-gray-200 dark:border-gray-800 break-words">
+                                                {headingText}
+                                            </h2>
+                                        );
+                                    }
+                                    // Special case for conclusion without emoji - add the emoji
+                                    else if (line.trim() === 'CONCLUSION' || line.trim() === '## CONCLUSION') {
+                                        return (
+                                            <h2 key={index} className="text-xl md:text-2xl font-bold mt-8 mb-4 text-gray-900 dark:text-gray-100 border-b pb-2 border-gray-200 dark:border-gray-800 break-words">
+                                                🔑 Conclusion
                                             </h2>
                                         );
                                     }
                                     // Check if line starts with a bullet point
                                     else if (line.trim().startsWith('•')) {
                                         return (
-                                            <div key={index} className="pl-5 mb-3 relative">
+                                            <div key={index} className="pl-5 mb-3 relative break-words">
                                                 <span className="text-indigo-600 dark:text-indigo-400 absolute left-0">{line.trim().substring(0, 1)}</span>
                                                 <span>{line.trim().substring(1)}</span>
                                             </div>
@@ -321,7 +333,7 @@ export default function SummaryPage() {
                                     }
                                     // Otherwise render as normal paragraph
                                     else if (line.trim()) {
-                                        return <p key={index} className="mb-4 text-gray-700 dark:text-gray-300">{line}</p>;
+                                        return <p key={index} className="mb-4 text-gray-700 dark:text-gray-300 break-words">{line}</p>;
                                     }
                                     return null; // Skip empty lines
                                 })}

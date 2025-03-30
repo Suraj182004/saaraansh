@@ -296,7 +296,7 @@ export default function DashboardPage() {
                                     <CardHeader className="pb-4">
                                         <div className="flex justify-between items-start">
                                             <div className="space-y-1">
-                                                <CardTitle className="text-lg font-bold line-clamp-1 text-gray-900 dark:text-gray-50 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                                                <CardTitle className="text-lg font-bold line-clamp-1 text-gray-900 dark:text-gray-50 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors break-words overflow-hidden text-ellipsis max-w-full">
                                                     {summary.fileName || 'Untitled Document'}
                                                 </CardTitle>
                                                 <div className="flex flex-wrap gap-2 items-center">
@@ -322,7 +322,7 @@ export default function DashboardPage() {
                                         </div>
                                     </CardHeader>
                                     <CardContent className="flex-grow pb-2">
-                                        <div className="text-sm text-gray-600 dark:text-gray-300 line-clamp-5">
+                                        <div className="text-sm text-gray-600 dark:text-gray-300 line-clamp-5 break-words overflow-hidden">
                                             {truncateText(summary.summaryText)}
                                         </div>
                                     </CardContent>
