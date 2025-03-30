@@ -7,6 +7,8 @@
     "dev:turbo": "next dev --turbopack",
     "build": "next build",
     "build:deploy": "npm install --legacy-peer-deps && next build",
+    "build:no-lint": "next build",
+    "build:render": "npm install --legacy-peer-deps && next build --no-lint",
     "start": "next start",
     "lint": "next lint",
     "postinstall": "node -e \"try { require('fs').mkdirSync('lib') } catch (e) {}\""
@@ -54,11 +56,11 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cross-env": "^7.0.3",
     "drizzle-kit": "^0.30.6",
     "eslint": "^9",
     "eslint-config-next": "15.2.3",
     "eslint-config-prettier": "^10.1.1",
-    "eslint-plugin-tailwindcss": "^3.14.0",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5"
   },

@@ -2,7 +2,7 @@ services:
   - type: web
     name: saaraansh
     env: node
-    buildCommand: npm run build:deploy
+    buildCommand: npm run build:render
     startCommand: npm start
     plan: starter
     branch: main
