@@ -1,0 +1,38 @@
+services:
+  - type: web
+    name: saaraansh
+    env: node
+    buildCommand: npm install --no-save && npm run build
+    startCommand: npm start
+    plan: starter
+    branch: main
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+        sync: false
+      - key: CLERK_SECRET_KEY
+        sync: false
+      - key: UPLOADTHING_TOKEN
+        sync: false
+      - key: GOOGLE_API_KEY
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      - key: STRIPE_BASIC_PRICE_ID
+        sync: false
+      - key: STRIPE_PRO_PRICE_ID
+        sync: false
+      - key: NEXT_PUBLIC_STRIPE_BASIC_PRICE_ID
+        sync: false
+      - key: NEXT_PUBLIC_STRIPE_PRO_PRICE_ID
+        sync: false
+      - key: NEXT_PUBLIC_APP_URL
+        value: https://saaraansh.onrender.com # Update this to your actual render URL 

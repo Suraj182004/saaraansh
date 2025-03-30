@@ -12,6 +12,7 @@ export type SummaryData = {
     fileUrl: string;
     summaryText: string;
     createdAt: Date | null;
+    originalFileUrl?: string;
 }
 
 export async function getAllUserSummaries(): Promise<SummaryData[]> {
@@ -30,7 +31,8 @@ export async function getAllUserSummaries(): Promise<SummaryData[]> {
                 fileName: pdfSummaries.fileName,
                 fileUrl: pdfSummaries.originalFileUrl,
                 summaryText: pdfSummaries.summaryText,
-                createdAt: pdfSummaries.createdAt
+                createdAt: pdfSummaries.createdAt,
+                originalFileUrl: pdfSummaries.originalFileUrl
             })
             .from(pdfSummaries)
             .where(eq(pdfSummaries.userId, userId))
@@ -59,7 +61,8 @@ export async function getSummaryById(summaryId: string): Promise<SummaryData | n
                 fileName: pdfSummaries.fileName,
                 fileUrl: pdfSummaries.originalFileUrl,
                 summaryText: pdfSummaries.summaryText,
-                createdAt: pdfSummaries.createdAt
+                createdAt: pdfSummaries.createdAt,
+                originalFileUrl: pdfSummaries.originalFileUrl
             })
             .from(pdfSummaries)
             .where(eq(pdfSummaries.id, summaryId))
