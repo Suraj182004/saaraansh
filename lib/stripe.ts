@@ -66,8 +66,8 @@ export async function createCheckoutSession({
         },
       ],
       mode: 'subscription',
-      success_url: `${successUrl}?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: cancelUrl,
+      success_url: `${successUrl}?checkout=success&session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${cancelUrl}?checkout=cancelled`,
       customer: customerId,
       customer_email: !customerId ? email : undefined,
     });

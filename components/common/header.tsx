@@ -126,13 +126,13 @@ export default function Header() {
           <SignedOut>
             <div className="flex gap-3 items-center">
               <Button asChild variant="outline" className="gap-1 shadow-sm border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
-                <NavLink href="/sign-in">
+                <NavLink href="/sign-in/[[...sign-in]]">
                   <LogIn className="w-4 h-4 mr-1" />
                   Sign In
                 </NavLink>
               </Button>
               <Button asChild className="bg-indigo-600 hover:bg-indigo-700 text-white">
-                <NavLink href="/sign-up">Sign Up</NavLink>
+                <NavLink href="/sign-up/[[...sign-up]]">Sign Up</NavLink>
               </Button>
             </div>
           </SignedOut>
@@ -212,7 +212,7 @@ export default function Header() {
                     className="w-full justify-center text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    <NavLink href="/sign-in">Sign In</NavLink>
+                    <NavLink href="/sign-in/[[...sign-in]]">Sign In</NavLink>
                   </Button>
                   
                   <Button 
@@ -220,7 +220,7 @@ export default function Header() {
                     className="w-full justify-center bg-indigo-600 hover:bg-indigo-700 text-white"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    <NavLink href="/sign-up">Sign Up</NavLink>
+                    <NavLink href="/sign-up/[[...sign-up]]">Sign Up</NavLink>
                   </Button>
                 </div>
               </SignedOut>

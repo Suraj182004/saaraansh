@@ -120,8 +120,8 @@ export async function POST(req: NextRequest) {
       priceId,
       customerId: customerId || undefined,
       email: email, // Fallback in case customerId is still undefined
-      successUrl: `${process.env.NEXT_PUBLIC_APP_URL || req.headers.get('origin')}/dashboard?checkout=success`,
-      cancelUrl: `${process.env.NEXT_PUBLIC_APP_URL || req.headers.get('origin')}/dashboard?checkout=cancelled`,
+      successUrl: `${process.env.NEXT_PUBLIC_APP_URL}/dashboard`,
+      cancelUrl: `${process.env.NEXT_PUBLIC_APP_URL}/dashboard`,
     });
     
     if (!url) {
