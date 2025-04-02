@@ -4,8 +4,7 @@ import { Button } from "@/components/ui/button";
 import HeroSection from "@/components/home/hero-section";
 import DemoSection from "@/components/home/demo-section";
 import FeaturesSection from "@/components/home/features-section";
-import HowItWorksSection from "@/components/home/how-it-works-sec
-tion";
+import HowItWorksSection from "@/components/home/how-it-works-section";
 import TestimonialsSection from "@/components/home/testimonials-section";
 import PricingSection from "@/components/home/pricing-section";
 import FaqSection from "@/components/home/faq-section";
