@@ -2,7 +2,7 @@
 
 import { FileText, Menu, X, LayoutDashboard, Upload, LogIn } from "lucide-react";
 import NavLink from "./nav-link";
-import { SignedIn, SignedOut, UserButton, useAuth, useUser } from "@clerk/nextjs";
+import { SignedIn, SignedOut, UserButton, useAuth, useUser, SignInButton, SignUpButton } from "@clerk/nextjs";
 import { Badge } from "@/components/ui/badge";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -126,13 +126,17 @@ export default function Header() {
           <SignedOut>
             <div className="flex gap-3 items-center">
               <Button asChild variant="outline" className="gap-1 shadow-sm border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
-                <NavLink href="/sign-in/[[...sign-in]]">
-                  <LogIn className="w-4 h-4 mr-1" />
-                  Sign In
-                </NavLink>
+                <SignInButton mode="redirect">
+                  <a className="flex items-center">
+                    <LogIn className="w-4 h-4 mr-1" />
+                    Sign In
+                  </a>
+                </SignInButton>
               </Button>
               <Button asChild className="bg-indigo-600 hover:bg-indigo-700 text-white">
-                <NavLink href="/sign-up/[[...sign-up]]">Sign Up</NavLink>
+                <SignUpButton mode="redirect">
+                  <a>Sign Up</a>
+                </SignUpButton>
               </Button>
             </div>
           </SignedOut>
@@ -212,7 +216,9 @@ export default function Header() {
                     className="w-full justify-center text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    <NavLink href="/sign-in/[[...sign-in]]">Sign In</NavLink>
+                    <SignInButton mode="redirect">
+                      <a>Sign In</a>
+                    </SignInButton>
                   </Button>
                   
                   <Button 
@@ -220,7 +226,9 @@ export default function Header() {
                     className="w-full justify-center bg-indigo-600 hover:bg-indigo-700 text-white"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    <NavLink href="/sign-up/[[...sign-up]]">Sign Up</NavLink>
+                    <SignUpButton mode="redirect">
+                      <a>Sign Up</a>
+                    </SignUpButton>
                   </Button>
                 </div>
               </SignedOut>
