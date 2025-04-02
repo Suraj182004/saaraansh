@@ -59,6 +59,12 @@ export async function POST(req: NextRequest) {
         throw new Error('Stripe is not initialized. This function can only be called server-side.');
       }
       
+      console.log('Webhook secret being used:', process.env.STRIPE_WEBHOOK_SECRET?.substring(0, 5) + '...');
+      
+      if (!process.env.STRIPE_WEBHOOK_SECRET) {
+        throw new Error('Missing STRIPE_WEBHOOK_SECRET environment variable');
+      }
+      
       event = stripe.webhooks.constructEvent(
         body,
         signature,
@@ -68,6 +74,9 @@ export async function POST(req: NextRequest) {
     } catch (err) {
       const error = err as Error;
       console.error(`Webhook signature verification failed: ${error.message}`);
+      console.error('Signature provided:', signature);
+      console.error('Body length:', body.length);
+      console.error('Webhook secret length:', process.env.STRIPE_WEBHOOK_SECRET?.length || 0);
       return NextResponse.json(
         { error: `Webhook signature verification failed: ${error.message}` },
         { status: 400 }
@@ -79,6 +88,7 @@ export async function POST(req: NextRequest) {
       case 'checkout.session.completed': {
         const session = event.data.object as Stripe.Checkout.Session;
         console.log(`Processing checkout.session.completed for session ${session.id}`);
+        console.log('Session object:', JSON.stringify(session, null, 2));
         
         // Extract customer ID and subscription ID
         const customerId = session.customer as string;
@@ -88,12 +98,16 @@ export async function POST(req: NextRequest) {
           console.error('No customer ID in the session object');
           break;
         }
+
+        console.log(`Looking for user with customerId: ${customerId}`);
         
         // Try to find user by customer ID first
         let userResults = await db
           .select({
             id: users.id,
-            email: users.email
+            email: users.email,
+            plan: users.plan,
+            subscriptionStatus: users.subscriptionStatus
           })
           .from(users)
           .where(eq(users.customerId, customerId))
@@ -101,11 +115,13 @@ export async function POST(req: NextRequest) {
         
         // If no user found by customer ID, try to find by email
         if (userResults.length === 0 && session.customer_details?.email) {
-          console.log(`No user found with customer ID ${customerId}, trying email lookup`);
+          console.log(`No user found with customer ID ${customerId}, trying email lookup with ${session.customer_details.email}`);
           userResults = await db
             .select({
               id: users.id,
-              email: users.email
+              email: users.email,
+              plan: users.plan,
+              subscriptionStatus: users.subscriptionStatus
             })
             .from(users)
             .where(eq(users.email, session.customer_details.email))
@@ -113,6 +129,7 @@ export async function POST(req: NextRequest) {
             
           // If user found by email, update their customer ID
           if (userResults.length > 0) {
+            console.log(`Found user by email, updating customerId to: ${customerId}`);
             await db
               .update(users)
               .set({ customerId: customerId })
@@ -125,7 +142,7 @@ export async function POST(req: NextRequest) {
           break;
         }
         
-        console.log(`Found user: ${userResults[0].id} (${userResults[0].email})`);
+        console.log(`Found user: ${userResults[0].id} (${userResults[0].email}), current plan: ${userResults[0].plan}, status: ${userResults[0].subscriptionStatus}`);
         
         // Get subscription details to determine plan
         if (!subscriptionId) {
@@ -133,33 +150,56 @@ export async function POST(req: NextRequest) {
           break;
         }
         
-        const subscription = await stripe.subscriptions.retrieve(subscriptionId);
-        const priceId = subscription.items.data[0].price.id;
-        
-        // Determine which plan based on price ID
-        let planName: 'basic' | 'pro' = 'basic';
-        if (priceId === process.env.STRIPE_PRO_PRICE_ID) {
-          planName = 'pro';
+        try {
+          console.log(`Retrieving subscription details for: ${subscriptionId}`);
+          const subscription = await stripe.subscriptions.retrieve(subscriptionId);
+          console.log('Subscription object:', JSON.stringify(subscription, null, 2));
+          
+          const priceId = subscription.items.data[0].price.id;
+          console.log(`Price ID from subscription: ${priceId}`);
+          console.log(`Expected Basic Price ID: ${process.env.STRIPE_BASIC_PRICE_ID}`);
+          console.log(`Expected Pro Price ID: ${process.env.STRIPE_PRO_PRICE_ID}`);
+          
+          // Determine which plan based on price ID
+          let planName: 'basic' | 'pro' = 'basic';
+          if (priceId === process.env.STRIPE_PRO_PRICE_ID) {
+            planName = 'pro';
+          }
+          
+          console.log(`Updating user ${userResults[0].id} to plan: ${planName}`);
+          
+          // Update user's plan
+          try {
+            await updateUserPlan(userResults[0].id, planName, {
+              customerId,
+              subscriptionId,
+            });
+            
+            console.log(`User ${userResults[0].id} updated to ${planName} plan successfully`);
+          } catch (planUpdateError) {
+            console.error(`Error updating user plan: ${(planUpdateError as Error).message}`);
+            console.error(planUpdateError);
+          }
+          
+          // Update subscription status
+          try {
+            await db
+              .update(users)
+              .set({
+                subscriptionStatus: 'active',
+                updatedAt: new Date()
+              })
+              .where(eq(users.id, userResults[0].id));
+              
+            console.log(`Updated subscription status to active for user ${userResults[0].id}`);
+          } catch (statusUpdateError) {
+            console.error(`Error updating subscription status: ${(statusUpdateError as Error).message}`);
+            console.error(statusUpdateError);
+          }
+        } catch (subscriptionError) {
+          console.error(`Error retrieving subscription: ${(subscriptionError as Error).message}`);
+          console.error(subscriptionError);
         }
-        
-        console.log(`Updating user ${userResults[0].id} to plan: ${planName}`);
-        
-        // Update user's plan
-        await updateUserPlan(userResults[0].id, planName, {
-          customerId,
-          subscriptionId,
-        });
-        
-        console.log(`User ${userResults[0].id} updated to ${planName} plan successfully`);
-        
-        // Update subscription status
-        await db
-          .update(users)
-          .set({
-            subscriptionStatus: 'active',
-            updatedAt: new Date()
-          })
-          .where(eq(users.id, userResults[0].id));
           
         break;
       }
