@@ -2,7 +2,7 @@
 
 
 
-Saaraansh is an advanced AI-powered application that transforms lengthy PDFs into concise, actionable summaries within seconds. Save hours of reading time while retaining all key information from your documents.
+Saaraansh is an advanced AI-powered application that transforms lengthy PDFs into concise, actionable summaries within seconds. Save hours of reading time while retaining all key information from your documents
 
 🚀 **Live Demo**: [https://saaraansh-g1r2.onrender.com/](https://saaraansh-g1r2.onrender.com/)
 
